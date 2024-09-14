@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     {
         controls = new Controls();
         timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
+        Physics.gravity = new Vector3(0, 0);
     }
 
     private void OnEnable()
@@ -39,6 +40,7 @@ public class GameController : MonoBehaviour
     private void StartTimer(InputAction.CallbackContext context)
     {
         Debug.Log("Timer Started");
+        Physics.gravity = new Vector3(0, -9.81f);
         StartCoroutine(TimerWait(1));
     }
 
