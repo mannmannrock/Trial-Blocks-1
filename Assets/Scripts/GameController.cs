@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     private Controls controls;
 
     //State Info
-    public float waitTime = 10;
+    public float timerLength = 10;
 
     private void Awake()
     {
@@ -44,16 +44,16 @@ public class GameController : MonoBehaviour
         StartCoroutine(TimerWait(1));
     }
 
-    private IEnumerator TimerWait(float wait)
+    private IEnumerator TimerWait(float waitTime)
     {
         //recursively calls each second
-        timerText.text = waitTime.ToString();
-        Debug.Log(waitTime);
-        waitTime -= 1;
+        timerText.text = timerLength.ToString();
+        Debug.Log(timerLength);
+        timerLength -= 1;
         
-        yield return new WaitForSeconds(wait);
+        yield return new WaitForSeconds(waitTime);
 
-        if (waitTime < 0)
+        if (timerLength < 0)
             OnTimerEnd();
         else
             StartCoroutine(TimerWait(1));
