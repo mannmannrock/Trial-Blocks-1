@@ -44,6 +44,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fde7c7e-6a41-4498-be18-93a051d4ff61"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -244,6 +253,39 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Outie Rotation H"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51c6db57-7198-4022-ab95-4d0945229ebf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c6102cd-38ba-4f37-8582-c661600f71ed"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3198c452-26b7-4b47-8e67-89f600561c36"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -254,6 +296,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_OutieRotationV = m_Player.FindAction("Outie Rotation V", throwIfNotFound: true);
         m_Player_OutieRotationH = m_Player.FindAction("Outie Rotation H", throwIfNotFound: true);
+        m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,12 +360,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_OutieRotationV;
     private readonly InputAction m_Player_OutieRotationH;
+    private readonly InputAction m_Player_Start;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @OutieRotationV => m_Wrapper.m_Player_OutieRotationV;
         public InputAction @OutieRotationH => m_Wrapper.m_Player_OutieRotationH;
+        public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -338,6 +383,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @OutieRotationH.started += instance.OnOutieRotationH;
             @OutieRotationH.performed += instance.OnOutieRotationH;
             @OutieRotationH.canceled += instance.OnOutieRotationH;
+            @Start.started += instance.OnStart;
+            @Start.performed += instance.OnStart;
+            @Start.canceled += instance.OnStart;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -348,6 +396,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @OutieRotationH.started -= instance.OnOutieRotationH;
             @OutieRotationH.performed -= instance.OnOutieRotationH;
             @OutieRotationH.canceled -= instance.OnOutieRotationH;
+            @Start.started -= instance.OnStart;
+            @Start.performed -= instance.OnStart;
+            @Start.canceled -= instance.OnStart;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -369,5 +420,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnOutieRotationV(InputAction.CallbackContext context);
         void OnOutieRotationH(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
 }
