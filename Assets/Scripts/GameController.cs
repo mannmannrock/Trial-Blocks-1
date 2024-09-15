@@ -49,10 +49,10 @@ public class GameController : MonoBehaviour
         //recursively calls each second
         timerText.text = timerLength.ToString();
         Debug.Log(timerLength);
-        timerLength -= 1;
         
         yield return new WaitForSeconds(waitTime);
 
+        timerLength -= 1;
         if (timerLength < 0)
             OnTimerEnd();
         else
