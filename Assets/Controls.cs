@@ -62,6 +62,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Innie Movement V"",
+                    ""type"": ""Value"",
+                    ""id"": ""3e5cb92c-3294-416b-988f-01e18de86c55"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Innie Movement H"",
+                    ""type"": ""Value"",
+                    ""id"": ""26f5eeb8-38f6-4f8e-984b-a060738d3364"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -218,6 +236,72 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""210cc394-6e4f-4b4c-8850-91191d76cac2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Innie Movement V"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""08b66478-ef9b-4c7a-a465-9857d5ab00c5"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Innie Movement V"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""316e2b9f-02ec-4e49-97d3-dda74292cc62"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Innie Movement V"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""18984ee5-2191-4bd7-a671-79424ef7cf73"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Innie Movement H"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""9663d904-0f12-4376-be12-9797894ccd26"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Innie Movement H"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""de5df889-2798-40cd-837d-040a4298fbec"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Innie Movement H"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -230,6 +314,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_OutieRotationH = m_Player.FindAction("Outie Rotation H", throwIfNotFound: true);
         m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
         m_Player_InnieJump = m_Player.FindAction("Innie Jump", throwIfNotFound: true);
+        m_Player_InnieMovementV = m_Player.FindAction("Innie Movement V", throwIfNotFound: true);
+        m_Player_InnieMovementH = m_Player.FindAction("Innie Movement H", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -295,6 +381,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OutieRotationH;
     private readonly InputAction m_Player_Start;
     private readonly InputAction m_Player_InnieJump;
+    private readonly InputAction m_Player_InnieMovementV;
+    private readonly InputAction m_Player_InnieMovementH;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -303,6 +391,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @OutieRotationH => m_Wrapper.m_Player_OutieRotationH;
         public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputAction @InnieJump => m_Wrapper.m_Player_InnieJump;
+        public InputAction @InnieMovementV => m_Wrapper.m_Player_InnieMovementV;
+        public InputAction @InnieMovementH => m_Wrapper.m_Player_InnieMovementH;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -324,6 +414,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @InnieJump.started += instance.OnInnieJump;
             @InnieJump.performed += instance.OnInnieJump;
             @InnieJump.canceled += instance.OnInnieJump;
+            @InnieMovementV.started += instance.OnInnieMovementV;
+            @InnieMovementV.performed += instance.OnInnieMovementV;
+            @InnieMovementV.canceled += instance.OnInnieMovementV;
+            @InnieMovementH.started += instance.OnInnieMovementH;
+            @InnieMovementH.performed += instance.OnInnieMovementH;
+            @InnieMovementH.canceled += instance.OnInnieMovementH;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -340,6 +436,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @InnieJump.started -= instance.OnInnieJump;
             @InnieJump.performed -= instance.OnInnieJump;
             @InnieJump.canceled -= instance.OnInnieJump;
+            @InnieMovementV.started -= instance.OnInnieMovementV;
+            @InnieMovementV.performed -= instance.OnInnieMovementV;
+            @InnieMovementV.canceled -= instance.OnInnieMovementV;
+            @InnieMovementH.started -= instance.OnInnieMovementH;
+            @InnieMovementH.performed -= instance.OnInnieMovementH;
+            @InnieMovementH.canceled -= instance.OnInnieMovementH;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -363,5 +465,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnOutieRotationH(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnInnieJump(InputAction.CallbackContext context);
+        void OnInnieMovementV(InputAction.CallbackContext context);
+        void OnInnieMovementH(InputAction.CallbackContext context);
     }
 }
