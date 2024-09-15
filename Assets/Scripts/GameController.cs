@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     //References
     private TextMeshProUGUI timerText;
     private Controls controls;
+    public GameObject forceField;
 
     //State Info
     public float timerLength = 10;
@@ -17,7 +18,6 @@ public class GameController : MonoBehaviour
     {
         controls = new Controls();
         timerText = GameObject.Find("Timer Text").GetComponent<TextMeshProUGUI>();
-        Physics.gravity = new Vector3(0, 0);
     }
 
     private void OnEnable()
@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     private void StartTimer(InputAction.CallbackContext context)
     {
         Debug.Log("Timer Started");
-        Physics.gravity = new Vector3(0, -9.81f);
+        forceField.SetActive(true);
         StartCoroutine(TimerWait(1));
     }
 

@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Innie Jump",
+                    "type": "Button",
+                    "id": "c67ba15d-8626-4d72-a394-7d5a4f5bd8af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -93,39 +102,6 @@
                     "name": "positive",
                     "id": "5e057f35-3630-4994-9d21-642746c6f454",
                     "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Outie Rotation V",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "e0ab204f-fbc9-42d0-978a-8e07762c8b2a",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Outie Rotation V",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "f0e95063-66b0-42db-ba02-2eea6191b702",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Outie Rotation V",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "8b9ca7bf-83fe-4ea8-b035-1bea3f284d8d",
-                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -200,42 +176,20 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "444fb18c-80b3-4a5f-8920-62e04a120deb",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "64324614-c00b-459d-a664-d93a0482ad7b",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Outie Rotation H",
-                    "isComposite": true,
+                    "action": "Innie Jump",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "ce9f0822-e215-4dd8-b601-9c09f9c053ea",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Outie Rotation H",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "149ef09e-8bb1-4a86-9755-ae1273b1e155",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Outie Rotation H",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
-                    "id": "51c6db57-7198-4022-ab95-4d0945229ebf",
-                    "path": "<Keyboard>/space",
+                    "id": "f835ea6c-a3bd-454d-bd18-9fef0913267f",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

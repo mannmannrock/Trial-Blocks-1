@@ -53,6 +53,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Innie Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c67ba15d-8626-4d72-a394-7d5a4f5bd8af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -115,39 +124,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""positive"",
                     ""id"": ""5e057f35-3630-4994-9d21-642746c6f454"",
                     ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Outie Rotation V"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""e0ab204f-fbc9-42d0-978a-8e07762c8b2a"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Outie Rotation V"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""f0e95063-66b0-42db-ba02-2eea6191b702"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Outie Rotation V"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""8b9ca7bf-83fe-4ea8-b035-1bea3f284d8d"",
-                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -222,42 +198,20 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""444fb18c-80b3-4a5f-8920-62e04a120deb"",
-                    ""path"": ""1DAxis"",
+                    ""name"": """",
+                    ""id"": ""64324614-c00b-459d-a664-d93a0482ad7b"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Outie Rotation H"",
-                    ""isComposite"": true,
+                    ""action"": ""Innie Jump"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""ce9f0822-e215-4dd8-b601-9c09f9c053ea"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Outie Rotation H"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""149ef09e-8bb1-4a86-9755-ae1273b1e155"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Outie Rotation H"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""51c6db57-7198-4022-ab95-4d0945229ebf"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""f835ea6c-a3bd-454d-bd18-9fef0913267f"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -275,6 +229,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_OutieRotationV = m_Player.FindAction("Outie Rotation V", throwIfNotFound: true);
         m_Player_OutieRotationH = m_Player.FindAction("Outie Rotation H", throwIfNotFound: true);
         m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
+        m_Player_InnieJump = m_Player.FindAction("Innie Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +294,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_OutieRotationV;
     private readonly InputAction m_Player_OutieRotationH;
     private readonly InputAction m_Player_Start;
+    private readonly InputAction m_Player_InnieJump;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -346,6 +302,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @OutieRotationV => m_Wrapper.m_Player_OutieRotationV;
         public InputAction @OutieRotationH => m_Wrapper.m_Player_OutieRotationH;
         public InputAction @Start => m_Wrapper.m_Player_Start;
+        public InputAction @InnieJump => m_Wrapper.m_Player_InnieJump;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -364,6 +321,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Start.started += instance.OnStart;
             @Start.performed += instance.OnStart;
             @Start.canceled += instance.OnStart;
+            @InnieJump.started += instance.OnInnieJump;
+            @InnieJump.performed += instance.OnInnieJump;
+            @InnieJump.canceled += instance.OnInnieJump;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -377,6 +337,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Start.started -= instance.OnStart;
             @Start.performed -= instance.OnStart;
             @Start.canceled -= instance.OnStart;
+            @InnieJump.started -= instance.OnInnieJump;
+            @InnieJump.performed -= instance.OnInnieJump;
+            @InnieJump.canceled -= instance.OnInnieJump;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -399,5 +362,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnOutieRotationV(InputAction.CallbackContext context);
         void OnOutieRotationH(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnInnieJump(InputAction.CallbackContext context);
     }
 }
