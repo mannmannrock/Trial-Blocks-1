@@ -28,15 +28,16 @@ public class InnieController : MonoBehaviour
         // Smoothly interpolate between the current rotation and the target rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lookRotationSpeed * Time.deltaTime);
 
-        rb.AddRelativeForce(new Vector3(hMovement * moveSpeed, 0, vMovement * moveSpeed));
+        rb.AddRelativeForce(new Vector3(hMovement * moveSpeed, vMovement * moveSpeed));
     }
 
     private void Awake()
     {
         controls = new Controls();
         rb = GetComponent<Rigidbody>();
-        //lookTarget = GameObject.Find("Cube").transform;
-        lookTarget = Camera.main.transform;
+        lookTarget = GameObject.Find("Cube").transform;
+        //lookTarget = Camera.main.transform;
+        //lookTarget = GameObject.Find("Player Target").transform;
     }
 
     private void OnEnable()
