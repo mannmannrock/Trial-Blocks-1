@@ -23,7 +23,6 @@ public class OutieBehavior : MonoBehaviour
         rotationBehavior = level.GetComponent<RotationBehavior>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         rotationBehavior.Rotate(joyInput);

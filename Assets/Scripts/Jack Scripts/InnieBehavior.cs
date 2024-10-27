@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class InnieBehavior : MonoBehaviour
 {
+    public GameObject cameraPoint;
+    RotationBehavior rotationBehavior;
     Rigidbody rb;
     Vector2 joyInput;
     public float accelerationRate = 1;
@@ -19,11 +21,13 @@ public class InnieBehavior : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rotationBehavior = cameraPoint.GetComponent<RotationBehavior>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         rb.velocity = Vector3.MoveTowards(rb.velocity, new Vector3(joyInput.x, rb.velocity.y/maxSpeed, joyInput.y) * maxSpeed, accelerationRate * Time.fixedDeltaTime);
+        rb.velocity = rb.velocity + rotationBehavior.gravity;
     }
 }
