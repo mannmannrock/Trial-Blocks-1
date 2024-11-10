@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,11 +22,15 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float maxHeight;
 
+    private Vector3 initialPosition;
+
+
     // Start is called before the first frame update
     void Start()
     {
         //Distance = Vector3.Distance(enemy.transform.position, player.transform.position);
         isMoving = true;
+        initialPosition = enemy.transform.position;
         StartCoroutine(Stop(duration));
     }
 
@@ -33,7 +38,53 @@ public class NewBehaviourScript : MonoBehaviour
     {
 
     }
+    IEnumerator Stop(float duration)
+    {
+        while (true)
+        {
+            Vector3 targetPosition;
 
+            // Determine the target position based on the direction
+            if (isMoving)
+            {
+                // Move forward by `moveDistance` units
+                targetPosition = initialPosition + Vector3.forward * moveDistance;
+            }
+            else
+            {
+                // Move back to the initial position
+                targetPosition = initialPosition;
+            }
+
+            // Move in an arc toward the target position
+            float hopDuration = moveDistance / speed;
+            float elapsedTime = 0;
+            Vector3 startPosition = enemy.transform.position;
+
+            while (elapsedTime < hopDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float normalizedTime = elapsedTime / hopDuration;
+
+                // Linear interpolation for horizontal movement
+                Vector3 currentPos = Vector3.Lerp(startPosition, targetPosition, normalizedTime);
+
+                // Parabolic arc for vertical movement
+                float heightFactor = 4 * maxHeight * (normalizedTime - normalizedTime * normalizedTime); // Parabolic curve
+                currentPos.y = startPosition.y + heightFactor;
+
+                enemy.transform.position = currentPos;
+                yield return null;
+            }
+
+            // Ensure the final position is set exactly to the target
+            enemy.transform.position = targetPosition;
+
+            // Wait for a specified duration, then reverse direction
+            yield return new WaitForSeconds(duration);
+            isMoving = !isMoving;
+        }
+    }/*
     IEnumerator Stop(float duration)
     {
         while (true)
@@ -88,7 +139,7 @@ public class NewBehaviourScript : MonoBehaviour
             
             yield return null;
         }
-    }
+    }*/
 }
 
 

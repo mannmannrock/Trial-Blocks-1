@@ -380,7 +380,7 @@ Transform:
   m_GameObject: {fileID: 733179602}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 3.19, z: -9.01}
+  m_LocalPosition: {x: -0.23, y: 5.19, z: -13.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -904,7 +904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1956145464
 Transform:
   m_ObjectHideFlags: 0
@@ -914,7 +914,7 @@ Transform:
   m_GameObject: {fileID: 1956145463}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.53, y: -13.77, z: 2.955}
+  m_LocalPosition: {x: 0.53, y: -13.77, z: 2.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1010,8 +1010,8 @@ MonoBehaviour:
   enemy: {fileID: 1956145463}
   speed: 8
   stoppingDistance: 0
-  duration: 1
-  moveDistance: 5
+  duration: 3
+  moveDistance: 10
   maxHeight: 5
 --- !u!1 &2006944254
 GameObject:
@@ -1032,7 +1032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2006944255
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   player: {fileID: 1836060690}
   enemy: {fileID: 2006944254}
   speed: 8
-  stoppingDistance: 1
+  stoppingDistance: 0
 --- !u!136 &2006944257
 CapsuleCollider:
   m_ObjectHideFlags: 0
