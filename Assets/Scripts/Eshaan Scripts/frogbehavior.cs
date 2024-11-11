@@ -20,6 +20,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public float moveDistance;
 
+    public Vector3 movementDirection = Vector3.up; // Movement direction for wall-based hopping
+
+
     public float maxHeight;
 
     private Vector3 initialPosition;
@@ -48,7 +51,7 @@ public class NewBehaviourScript : MonoBehaviour
             if (isMoving)
             {
                 // Move forward by `moveDistance` units
-                targetPosition = initialPosition + Vector3.forward * moveDistance;
+                targetPosition = initialPosition + movementDirection.normalized * moveDistance;
             }
             else
             {
@@ -71,7 +74,7 @@ public class NewBehaviourScript : MonoBehaviour
 
                 // Parabolic arc for vertical movement
                 float heightFactor = 4 * maxHeight * (normalizedTime - normalizedTime * normalizedTime); // Parabolic curve
-                currentPos.y = startPosition.y + heightFactor;
+                currentPos += Vector3.Cross(movementDirection, Vector3.forward).normalized * heightFactor;
 
                 enemy.transform.position = currentPos;
                 yield return null;
